@@ -1,0 +1,29 @@
+<html>
+<head>
+<title> Login Page</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="validation.js"></script>
+<script type="text/javascript" src="sms.js"></script>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body onload="return loginPageSessionState();">
+	<form>
+		<div>
+		
+			User ID: <input type="text" id="userid" class="inputText" /> <br>
+			<br>
+			Password: <input type="password" id="pass" class="inputText"/> <br>
+			<br>
+			<input id="submit" type="button" value="Login" name="submit"/>
+		
+			<br><br>
+			<label id="errorLabel">  </label>
+
+		</div>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="validation.js"></script>
+<script type="text/javascript" src="studentScript.js"></script>
+	<link rel="stylesheet" href="styles.css">
+
+	<title></title>
+</head>
+<body onload="return sessionState();">
+
+	<form>
+		<h1>Student Profile</h1>
+		<div>
+			<label id="successLabel"></label>
+			<br>
+			<label id="errorLabel"></label>
+			<img src="student.png" alt="Image Unavailable" height="70" width="70"/>
+			<input type="button" id="logoutButtton" value=" Logout "/>
+			<h3>PERSONAL DETAILS</h3> 
+			<h5>Name</h5>  <input type="text" id="name" readonly="true" placeholder="NA" />
+			<h5>Age</h5>	<input type="number" id="age" readonly="true" placeholder="NA" />
+			<h5>Gender</h5> <input type="text" id="gender" readonly="true" placeholder="NA" />
+			<h5>Number</h5> <input type="text" id="number" readonly="true" placeholder="NA" />
+			<input type="button" id="button1" value=" EDIT "/>
+			<input type="button" id="button2" value=" SAVE "/>
+
+		</div>
+
+
+	</form>
+
+
+</body>
+</html>

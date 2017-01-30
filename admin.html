@@ -1,0 +1,68 @@
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="validation.js"></script>
+	<script type="text/javascript" src="scriptAdmin.js"></script>
+
+	<link rel="stylesheet" href="styles.css">
+	<title>
+		
+	</title>
+</head>
+<body onload="return sessionState();">
+<form>
+
+<div id="divOne"> 
+	<label id="successLabel"></label>
+	<br><br>
+	<input type="button" class="adminButton" id="button1" value=" Logout "/>
+	<br><br>
+	<input type="button" class="adminButton" value="Add department" id="button2""/>
+	<br><br>
+	<input type="button" class="adminButton" id="submit1" value="Add Subject"/>
+  	<br><br>
+  	<input type="button" class="adminButton" id="submit2" value="Show Subject"/>
+  	<br><br>
+  	<input type="button" class="adminButton" id="submit3" value="Add Teachers"/>
+  	<br><br>
+  	<input type="button" class="adminButton" id="submit4" value="Show Teachers">
+	<br><br>
+	<input type="button" class="adminButton" id="submit5" value="Add HOD"/>
+	<br><br>
+	<br><br>
+	<br><br>
+</div>
+
+<div id="div2">
+	<label id="errorLabel"> </label>
+	<br><br>
+	<label id="label2" value="Add Deaprtments"></label>
+	<input type="text" type="text" class="inputText" id="department" placeholder="Department name"/>
+	<br>	
+	<label id="label2" value="Select Departments"></label>
+	<br>
+	Select a detpartment <select id="select1"></select>
+ 	<br>
+	<label id="label3" value="Add Subjects"></label>
+	<input type="text" type="text" class="inputText" id="subject" placeholder="Subject name"/>
+  	<br>
+  	Select a subject <select id="select2"></select>
+	<br>
+	<label id="label3" value="Add Teachers"></label>	
+	Teacher ID: <input type="text" class="inputText" id="id" placeholder="Teacher ID"/>
+	<br>
+	Teacher password: <input type="text" class="inputText" id="pass" placeholder="Teacher password"/> 
+	<br>
+  	Select a Teacher <select id="select3"></select>
+ 	<br>
+	HOD ID: <input type="text" class="inputText" id="hodid" placeholder="HOD ID"/>
+	<br>
+	HOD password: <input type="text" class="inputText" id="hodpass" placeholder="HOD password"/> 
+	<br><br><br>
+
+</div>
+  
+</form>
+</body>
+</html>

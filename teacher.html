@@ -1,0 +1,58 @@
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="validation.js"></script>
+<script type="text/javascript" src="teacher.js"></script>
+<link rel="stylesheet" href="styles.css">
+
+<title></title>
+<body onload="return sessionState();">
+	<form>
+		<h1>Teacher Profile</h1>
+		<label id="successLabel"></label>
+		<br><br>
+		<label id="errorLabel"></label>
+		<div>
+
+			<img src="teacher.jpg" alt="Image Unavailable" height="70" width="70"/>
+			<input type="button" id="logoutButtton" value=" Logout" />
+			<h3>PERSONAL DETAILS</h3> 
+			<h5>Name</h5>  <input type="text" class="inputText" id="name" readonly="true" placeholder="NA" />
+			<h5>Age</h5>	<input type="number" class="inputText" id="age" readonly="true" placeholder="NA" />
+			<h5>Gender</h5> <input type="text" class="inputText" id="gender" readonly="true" placeholder="NA" />
+			<br>
+			
+			<input type="button" id="button1" value=" EDIT "/>
+			<input type="button" id="button2" value=" SAVE "/>
+
+		</div>
+		<div>
+
+			<h3>QUALIFICATIONS</h3>
+			<h5>Master</h5>  <input type="text" class="inputText" id="master" readonly="true" placeholder="NA" />
+			<h5>Bachelor</h5>  <input type="text" class="inputText" id="bachelor" readonly="true" placeholder="NA" />
+			<h5>Higher</h5>	<input type="text" class="inputText" id="higher" readonly="true" placeholder="NA" />
+			<h5>Secondary</h5> <input type="text" class="inputText" id="second" readonly="true" placeholder="NA" />
+			<br>
+
+			<input type="button" id="button3" value=" EDIT "/>
+			<input type="button" id="button4" value=" SAVE "/>
+			<br><br>
+			<input type="button" id="button5" value=" Add Students"/>
+			<label id="label1"></label>
+			
+		</div>
+			
+		<div id="studentDiv" style="visibility:hidden">
+
+			<h5>Student name</h5><input type="text" class="inputText" id="sname"/>
+			<h5>Student id</h5><input type="text" class="inputText" id="sid"/>
+			<h5>Student pass</h5><input type="text" class="inputText" id="spass"/>
+			<input type="button" id="button6" value="  Add  "/>
+
+		</div>
+	</form>
+
+</body>
+</html>
