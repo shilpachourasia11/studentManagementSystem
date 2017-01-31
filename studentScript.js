@@ -5,10 +5,9 @@ $(document).ready(function(){
 		$("#age").removeAttr('readonly');
 		$("#gender").removeAttr('readonly');
 		$("#number").removeAttr('readonly');
+		$(".textInputStudent").attr('style','visibility: visible');
 	});
-});
 
-$(document).ready(function(){
 	$("#button2").click( function()
 	{
 	var student = JSON.parse(localStorage.getItem("students"));
@@ -21,48 +20,52 @@ $(document).ready(function(){
 	
 	studentDetails = JSON.parse(localStorage.getItem("studentDetails"));
 
-	if(	genderInputCheck(gender) != 0)
-	{
+	if(	genderInputCheck(gender) != 0){
 		$("#errorLabel").text("Gender value incorrect");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 
-	if(	phoneInputCheck(number) == 0)
-	{
+	if(	phoneInputCheck(number) == 0){
 		$("#errorLabel").text("Invalid phone number");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
-	if(onlyText(name)==0)
-	{
+	if(onlyText(name)==0){
 		$("#errorLabel").text("Name cannot have numbers in it");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 
-	if( studentDetails == null)
-	{
+	if( studentDetails == null){
 		studentDetails = [];
 	}
 
-	studentDetails.push({
+	myData= {
 		"id1" : student[index].id,
 		"name1" : name,
 		"gender1" : gender,
 		"age1" : age,
 		"number1" : number,
 		"dept1" : student[index].sdeps
-	});
+	}
+
+	// studentDetails[index].push({
+	// 	"id1" : student[index].id,
+	// 	"name1" : name,
+	// 	"gender1" : gender,
+	// 	"age1" : age,
+	// 	"number1" : number,
+	// 	"dept1" : student[index].sdeps
+	// });
+
+	studentDetails[index] = myData;
 
 	localStorage.setItem("studentDetails",JSON.stringify(studentDetails));
 
@@ -71,16 +74,16 @@ $(document).ready(function(){
 	$("#gender").attr('readOnly','true');
 	$("#number").attr('readOnly','true');
 	successAlert();
+	$(".textInputStudent").attr('style','visibility: hidden');
+   	loadData();
 	});
-});
 
-$(document).ready(function(){
 	$("#logoutButtton").click( function()
 	{
-		window.location = "sms.html";
-		localStorage.setItem("loginIndex","null");
-   		localStorage.setItem("loginIndexHOD","null");
-   		localStorage.setItem("loginIndexStudent","null");
+		window.location = "home.html";
+		localStorage.setItem("loginIndex",null);
+   		localStorage.setItem("loginIndexHOD",null);
+   		localStorage.setItem("loginIndexStudent",null);
 	});
 });
 
@@ -94,4 +97,24 @@ function successAlert()
 function successAlertClear()
 {
 	$("#successLabel").text("");
+}
+
+function loadData()
+{
+	var studentDetails = [];
+	studentDetails =JSON.parse(localStorage.getItem("studentDetails"));
+	var index = localStorage.getItem("loginIndexStudent");
+
+	if(studentDetails[index]== null | studentDetails== null){  
+		$("#studentName").text("NA");
+		$("#studentAge").text("NA");
+		$("#studentGender").text("NA");
+		$("#studentNumber").text("NA");
+	}
+	else{
+		$("#studentName").text(studentDetails[index].name1);
+		$("#studentAge").text(studentDetails[index].age1);
+		$("#studentGender").text(studentDetails[index].gender1);
+		$("#studentNumber").text(studentDetails[index].number1);
+	}
 }

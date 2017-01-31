@@ -14,55 +14,87 @@
 <form>
 
 <div id="divOne"> 
-	<label id="successLabel"></label>
+	<label id="successLabel"> </label>
 	<br><br>
 	<input type="button" class="adminButton" id="button1" value=" Logout "/>
 	<br><br>
-	<input type="button" class="adminButton" value="Add department" id="button2""/>
+	<input type="button" id="enableDepartment" value="Enable Add department"/>
 	<br><br>
-	<input type="button" class="adminButton" id="submit1" value="Add Subject"/>
-  	<br><br>
-  	<input type="button" class="adminButton" id="submit2" value="Show Subject"/>
-  	<br><br>
-  	<input type="button" class="adminButton" id="submit3" value="Add Teachers"/>
-  	<br><br>
-  	<input type="button" class="adminButton" id="submit4" value="Show Teachers">
+	<input type="button" id="enableSubject" value="Enable Add Subject"/>
 	<br><br>
-	<input type="button" class="adminButton" id="submit5" value="Add HOD"/>
+	<input type="button" id="enableTeacher" value="Enable Add Teacher"/>
 	<br><br>
-	<br><br>
+	<input type="button" id="enableHOD" value="Enable Add HOD"/>
 	<br><br>
 </div>
 
-<div id="div2">
-	<label id="errorLabel"> </label>
-	<br><br>
-	<label id="label2" value="Add Deaprtments"></label>
-	<input type="text" type="text" class="inputText" id="department" placeholder="Department name"/>
-	<br>	
-	<label id="label2" value="Select Departments"></label>
-	<br>
-	Select a detpartment <select id="select1"></select>
- 	<br>
-	<label id="label3" value="Add Subjects"></label>
-	<input type="text" type="text" class="inputText" id="subject" placeholder="Subject name"/>
+<div id="dropDownList">
+	<span>
+		Detpartments Available <select id="select1" >
+			<option selected disabled>No departments</option>
+		</select>
+		<br><br>
+  		Subject offered <select id="select2">
+  			<option selected disabled>No subjects</option>
+  		</select>
+ 		<br><br>
+  		Teachers under this Department <select id="select3">
+  			<option selected disabled>No teachers</option>
+  		</select>
+  		<br>
+  	</span>
   	<br>
-  	Select a subject <select id="select2"></select>
-	<br>
-	<label id="label3" value="Add Teachers"></label>	
-	Teacher ID: <input type="text" class="inputText" id="id" placeholder="Teacher ID"/>
-	<br>
-	Teacher password: <input type="text" class="inputText" id="pass" placeholder="Teacher password"/> 
-	<br>
-  	Select a Teacher <select id="select3"></select>
- 	<br>
+	
+	<span id="divDepartmentDetails">
+		<label id="label2">Give Department name</label>
+		<input type="text" type="text" class="inputText" id="department" placeholder="Department name"/>
+	</span>
+
+	<span  id="divSubjectDetails">
+		<label id="label3">Give Subject name</label>
+		<input type="text" type="text" class="inputText" id="subject" placeholder="Subject name"/>
+	</span>
+
+
+	<span id="divTeacherDetails">
+		<label id="label3">Teacher ID: </label>	
+		<input type="text" class="inputText" id="id" placeholder="Teacher ID"/>
+		<br>
+		<label id="label3">Teacher password: </label>	
+		<input type="text" class="inputText" id="pass" placeholder="Teacher password"/> 
+	</span>
+
+
+	<span id=divHOD_Details>
 	HOD ID: <input type="text" class="inputText" id="hodid" placeholder="HOD ID"/>
 	<br>
 	HOD password: <input type="text" class="inputText" id="hodpass" placeholder="HOD password"/> 
-	<br><br><br>
+	</span>
+  	<label id="errorLabel" class="erro"> </label>
 
 </div>
-  
+
+<div id="hiddenButtons">
+<span>
+	<div id="departmentButton">
+		<input type="button" class="adminButtonHidden" value="Add department" id="button2""/>
+	</div>
+	<div id="subjectButton">
+		<input type="button" class="adminButtonHidden" id="submit1" value="Add Subject"/>
+  		<br><br>
+  		<input type="button" class="adminButtonHidden" id="submit2" value="Show Subject"/>
+  	</div>
+  	<div id="teacherButton">
+  		<input type="button" class="adminButtonHidden" id="submit3" value="Add Teachers"/>
+  		<br><br>
+  		<input type="button" class="adminButtonHidden" id="submit4" value="Show Teachers">
+	</div>
+	<div id="hodButton">
+		<input type="button" class="adminButtonHidden" id="submit5" value="Add HOD"/>
+	</div>
+</span>
+</div>
+
 </form>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 
 <title></title>
-<body onload="return sessionState();">
+<body onload="sessionState(); loadTeacherData(); loadTeacherPersonalData();">
 	<form>
 		<h1>Teacher Profile</h1>
 		<label id="successLabel"></label>
@@ -18,9 +18,12 @@
 			<img src="teacher.jpg" alt="Image Unavailable" height="70" width="70"/>
 			<input type="button" id="logoutButtton" value=" Logout" />
 			<h3>PERSONAL DETAILS</h3> 
-			<h5>Name</h5>  <input type="text" class="inputText" id="name" readonly="true" placeholder="NA" />
-			<h5>Age</h5>	<input type="number" class="inputText" id="age" readonly="true" placeholder="NA" />
-			<h5>Gender</h5> <input type="text" class="inputText" id="gender" readonly="true" placeholder="NA" />
+			<h5>Name</h5> <label id="name1"></label>
+			<input type="text" class="inputTextPersonalDetails" id="name" readonly="true" placeholder="NA" />
+			<h5>Age</h5> <label id="age1"></label>
+			<input type="number" class="inputTextPersonalDetails" id="age" readonly="true" placeholder="NA" />
+			<h5>Gender</h5> <label id="gender1"></label>
+			<input type="text" class="inputTextPersonalDetails" id="gender" readonly="true" placeholder="NA" />
 			<br>
 			
 			<input type="button" id="button1" value=" EDIT "/>
@@ -30,10 +33,14 @@
 		<div>
 
 			<h3>QUALIFICATIONS</h3>
-			<h5>Master</h5>  <input type="text" class="inputText" id="master" readonly="true" placeholder="NA" />
-			<h5>Bachelor</h5>  <input type="text" class="inputText" id="bachelor" readonly="true" placeholder="NA" />
-			<h5>Higher</h5>	<input type="text" class="inputText" id="higher" readonly="true" placeholder="NA" />
-			<h5>Secondary</h5> <input type="text" class="inputText" id="second" readonly="true" placeholder="NA" />
+			<h5>Master</h5>  <label id="master1"></label>
+			<input type="text" class="inputText" id="master" readonly="true" placeholder="NA" />
+			<h5>Bachelor</h5>  <label id="bachelor1"></label>
+			<input type="text" class="inputText" id="bachelor" readonly="true" placeholder="NA" />
+			<h5>Higher</h5>	<label id="higher1"></label>
+			<input type="text" class="inputText" id="higher" readonly="true" placeholder="NA" />
+			<h5>Secondary</h5> <label id="second1"></label>
+			<input type="text" class="inputText" id="second" readonly="true" placeholder="NA" />
 			<br>
 
 			<input type="button" id="button3" value=" EDIT "/>

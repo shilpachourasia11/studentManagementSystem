@@ -1,15 +1,38 @@
 #divOne{
 	float : left;
-	width: 30%;
-	margin-left: 5%;
+	width: 20%;
+	margin-left: 0%;
+  height: 74%;
 }
 
-#div2{
-	
+#divDepartmentDetails{
+	display: none;
 	float:left;
-	width: 45%;
+  width: 49.86%;
 }
 
+#divSubjectDetails{
+  display: none;
+  float:left;
+  width: 49.86%;
+}
+
+#divTeacherDetails{
+  display: none;
+  float:left;
+  width: 49.86%;
+}
+#divHOD_Details{
+  display: none;
+  float:left;
+  width: 49.86%;
+}
+
+#dropDownList{
+  float: left;
+  width: 40%;
+  height: 74%;
+}
 
 #errorLabel {
   color: red;
@@ -17,9 +40,27 @@
 
 
 #successLabel {
-  background-color: green;
+  color: green;
 }
 
+#hiddenButtons{
+  float : left;
+  width: 25%;
+  height: 74%;
+}
+
+#departmentButton{
+  display: none;
+}
+#subjectButton{
+  display: none;
+}
+#teacherButton{
+  display: none;
+}
+#hodButton{
+  display: none;
+}
 body {
 font-family: Arial;
 background-color: #3498DB;
@@ -42,8 +83,38 @@ input[type="button"] {
   	margin: 0 auto;
 }
 
-.inputText {
-	display: block;
+input[type="submit"] {
+  border: 2px solid transparent;
+    background: #3498DB;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 3px;
+    box-shadow: none;
+    /*display: block;*/
+    width: 250px;
+    margin: 0 auto;
+}
+
+.inputTextPersonalDetails{
+  display: block;
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+  visibility: hidden;
+}
+
+.inputTextHome{
+  display: block;
   text-align: center;
   background-color: #ECF0F1;
   border: 2px solid transparent;
@@ -55,21 +126,38 @@ input[type="button"] {
   transition: border .5s;
 }
 
+.inputText {
+	display: block;
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+  visibility: hidden;
+}
+
 
 div { 
 
 	background-color: #FFF;
-padding: 20px;
-border-radius: 5px;
+  padding: 20px;
+  border-radius: 5px;
 }
 
-
-/*body {
-  position: relative;
-  margin: 0;
-  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
-  min-height: 100%;
-  background: linear-gradient(to bottom, #68EACC 0%, #497BE8 100%);
-  color: #777;
+.textInputStudent{
+  display: block;
+  text-align: center;
+  background-color: #ECF0F1;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 10px 0;
+  width: 250px;
+  transition: border .5s;
+  visibility: hidden;
 }
-*/

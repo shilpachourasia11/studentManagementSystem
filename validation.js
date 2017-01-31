@@ -78,12 +78,12 @@ function sessionState()
    }
    if(loginIndex == null)
    {
-      window.location="sms.html";
+      window.location="home.html";
       return false;
    }
    if(loginIndex == "null")
    {
-      window.location="sms.html";
+      window.location="home.html";
       return false;
    }
    else{
@@ -91,7 +91,7 @@ function sessionState()
    }
 }
 
-function ifFieldEmpty(name, pass)
+function isFieldEmpty(name, pass)
 {
 	if(name == "" || pass == "")
 	{
@@ -134,7 +134,7 @@ function phoneInputCheck(phone)
 function checkFodDuplicatesDepartments(checkVar)
 {	
 
-   	var storeddep = JSON.parse(localStorage.getItem("dept"));
+   	var storeddep = JSON.parse(localStorage.getItem("deptmentsAdded"));
 
    	if(storeddep == null)
    	{
@@ -142,7 +142,7 @@ function checkFodDuplicatesDepartments(checkVar)
    	}
    	for(var i = 0; i < storeddep.length ; i++)
    	{
-   		if(storeddep[i].dep == checkVar)
+   		if(storeddep[i].department_name == checkVar)
    		{
    			return 0;
    		}
@@ -153,7 +153,7 @@ function checkFodDuplicatesDepartments(checkVar)
 
 function checkFodDuplicatesSubjects(checkVar , key1)
 {
-   	var storedSubject = JSON.parse(localStorage.getItem("dept"));
+   	var storedSubject = JSON.parse(localStorage.getItem("deptmentsAdded"));
 
    	if(storedSubject == null)
    	{
@@ -173,7 +173,7 @@ function checkFodDuplicatesSubjects(checkVar , key1)
 
 function checkFodDuplicatesTeachers(checkVar)
 {
-   	var storedTeacher = JSON.parse(localStorage.getItem("teach"));
+   	var storedTeacher = JSON.parse(localStorage.getItem("teacherAdded"));
 
    	 if(storedTeacher == null)
    	{
@@ -193,7 +193,7 @@ function checkFodDuplicatesTeachers(checkVar)
 
 function checkFodDuplicatesHOD(checkVar)
 {
-   	var storedTeacher = JSON.parse(localStorage.getItem("teach"));
+   	var storedTeacher = JSON.parse(localStorage.getItem("teacherAdded"));
 
    	 if(storedTeacher == null)
    	{

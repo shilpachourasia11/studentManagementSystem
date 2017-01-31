@@ -1,118 +1,115 @@
-var dep = [];
+var departmentList = [];
 
 $(document).ready(function(){
+
 	$("#button2").click( function()
 	{
-		var dept1= $("#department").val();
-   	
-   	if(	ifFieldEmpty(dept1) == 0)
-	{
-		$("#errorLabel").text("Can not leave this block empty");
+	
+
+	var department_name_value= $("#department").val();
+
+   	if(	isFieldEmpty(department_name_value) == 0){
+		$("#errorLabel").text("Incomplete information");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 
-	if(	lengthCheck(dept1) == 0)
-	{
+	if(	lengthCheck(department_name_value) == 0){
 		$("#errorLabel").text("Department name must have characters more than 1 ");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 
-	if(	checkFodDuplicatesDepartments(dept1) == 0)
-	{
+	if(	checkFodDuplicatesDepartments(department_name_value) == 0){
 		$("#errorLabel").text("Department has already been added");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
-	if(onlyText(dept1)==0)
-	{
-		$("#errorLabel").text("department name cannot have numbers in it");
+	if(onlyText(department_name_value)==0){
+		$("#errorLabel").text("Department name must have only letters");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
-    dep.push({
-    	"dep" : dept1,
+
+    departmentList.push({
+    	"department_name" : department_name_value,
     	"subject" : []
     });
-    localStorage.setItem("dept",JSON.stringify(dep));
-   	var storeddep = JSON.parse(localStorage.getItem("dept"));
+
+    if($('select#select1 option') !='undefined')
+	{
+    	for(i = $('select#select1 option').length - 1 ; i >= 0 ; i--)
+    	{
+        	$('select#select1 option').remove(i);
+    	}
+    }
+
+    localStorage.setItem("deptmentsAdded",JSON.stringify(departmentList));
+   	var storeddep = JSON.parse(localStorage.getItem("deptmentsAdded"));
     var option = document.createElement("option");
-    option.textContent = storeddep[storeddep.length - 1].dep;
+    option.textContent = storeddep[storeddep.length - 1].department_name;
     $("#select1").append(option);
 
     successAlert("Departments");
 	});
-});
 
-$(document).ready(function(){
+	
 	$("#submit1").click( function()
 	{
-	var department = $("#select1").val();
-	var subject = $("#subject").val();
+		var department = $("#select1").val();
+		var subject = $("#subject").val();
+		var key1;
 
-	if(	ifFieldEmpty(subject) == 0)
-	{
-		$("#errorLabel").text("Can not leave this block empty");
-		return;
-	}
-	else
-	{
-		$("#errorLabel").text(null);
-	}
-	if(onlyText(subject)==0)
-	{
-		$("#errorLabel").text("Subject name cannot have numbers in it");
-		return;
-	}
-	else
-	{
-		$("#errorLabel").text(null);
-	}
-	
-	var key1;
-
-	for(var i=0;i<dep.length;i++)
-	{
-		if(department==dep[i].dep)
+		for(var i=0;i<departmentList.length;i++)
 		{
-			key1=i;
-			break;
+			if(department==departmentList[i].department_name)
+			{
+				key1=i;
+				break;
+			}
 		}
-	}
 
-	if(	checkFodDuplicatesSubjects(subject , key1) == 0)
-	{
-		$("#errorLabel").text("Already added this subject");
-		return;
-	}
-	else
-	{
-		$("#errorLabel").text(null);
-	}
-
-	dep[key1].subject.push(subject);
+		/*validateSubjectEntries(subject, key1);*/
+		if(	isFieldEmpty(subject) == 0){
+			$("#errorLabel").text("Imcomplete information");
+			return;
+		}
+		else{
+			$("#errorLabel").text(null);
+		}
+		if(onlyText(subject)==0){
+			$("#errorLabel").text("Subject name must contain characters only");
+			return;
+		}
+		else{
+			$("#errorLabel").text(null);
+		}
+			
+		if(	checkFodDuplicatesSubjects(subject , key1) == 0){
+			$("#errorLabel").text("Already added this subject");
+			return;
+		}
+		else{
+			$("#errorLabel").text(null);
+		}
 	
-	localStorage.setItem("dept",JSON.stringify(dep)); // din not add stringify because it gave erros 
+		departmentList[key1].subject.push(subject);
+	
+		localStorage.setItem("deptmentsAdded",JSON.stringify(departmentList));
 
-	successAlert("Subjects");
+		successAlert("Subjects");
 	});
-});
 
 
-$(document).ready(function(){
+
 	$("#submit2").click( function()
 	{
 	var i;
@@ -125,26 +122,24 @@ $(document).ready(function(){
     	}
     }
 	var department = $("#select1").val();
-	var storeddep =localStorage.getItem("dept");
+	var storeddep =localStorage.getItem("deptmentsAdded");
 
-	for(var i=0;i<Object.keys(dep).length;i++)
+	for(var i=0;i<Object.keys(departmentList).length;i++)
 	{
-		if(department==dep[i].dep)
+		if(department==departmentList[i].department_name)
 		{
-			for(var j=0;j<dep[i].subject.length;j++)
+			for(var j=0;j<departmentList[i].subject.length;j++)
    			{
     			var option = document.createElement("option");
-    			option.textContent = dep[i].subject[j];
+    			option.textContent = departmentList[i].subject[j];
     			$("#select2").append(option);
     		}
     		break;
 		}
 	}
 	});
-});
 
 
-$(document).ready(function(){
 	$("#submit3").click( function()
 	{
 	var department = $("#select1").val();
@@ -152,44 +147,41 @@ $(document).ready(function(){
 	var tid = $("#id").val();
 	var tpas = $("#pass").val();
 
-	if(	ifFieldEmpty(tid , tpas) == 0)
+	var teacherTemp = [];
+	teacherTemp = JSON.parse(localStorage.getItem("teacherAdded"));
+
+	if(teacherTemp == null)
 	{
-		$("#errorLabel").text("Can not leave this block empty");
+		teacherTemp = [];
+	}
+
+	// validateTeacherEntries(tid,tpas);
+	
+	if(	isFieldEmpty(tid , tpas) == 0){
+		$("#errorLabel").text("Incomplete information");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 	
-	var teachTemp = [];
-	teachTemp = JSON.parse(localStorage.getItem("teach"));
-
-	if(teachTemp == null)
-	{
-		teachTemp = [];
-	}
-
-	if(	passwordLengthCheck(tpas) == 0)
-	{
+	
+	if(	passwordLengthCheck(tpas) == 0){
 		$("#errorLabel").text("Password must be more than six characters");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
-
 	
-	if(	checkFodDuplicatesTeachers(tid) == 0)
-	{
+	if(	checkFodDuplicatesTeachers(tid) == 0){
 		$("#errorLabel").text("Already added this teacher");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
+
 
 	mydata = {
 		"id" : tid,
@@ -198,14 +190,12 @@ $(document).ready(function(){
 		"dept" : department
 	};
 
-	teachTemp.push(mydata);
+	teacherTemp.push(mydata);
 	
-	localStorage.setItem("teach",JSON.stringify(teachTemp));
+	localStorage.setItem("teacherAdded",JSON.stringify(teacherTemp));
 	successAlert("teacher");
 	});
-});
 
-$(document).ready(function(){
 	$("#submit4").click( function()
 	{
 	
@@ -217,7 +207,7 @@ $(document).ready(function(){
 	var department = $("#select1").val();
 	var sub = $("#select2").val();
 
-	var teacher =JSON.parse(localStorage.getItem("teach"));
+	var teacher =JSON.parse(localStorage.getItem("teacherAdded"));
 	
 	for(var i=0 ; i<Object.keys(teacher).length; i++)
 	{
@@ -230,36 +220,32 @@ $(document).ready(function(){
 	}
 
 	});
-});
 
-$(document).ready(function(){
+
+
 	$("#submit5").click( function()
 	{
 	var department = $("#select1").val();
-	var sub = $("#select2").val();
 	var teacher = $("#select3").val();
 	var hodid = $("#hodid").val();
 	var hodpass = $("#hodpass").val();
 
 	var hod = [];
 
-	if(	ifFieldEmpty(hodid , hodpass) == 0)
-	{
-		$("#errorLabel").text("Can not leave this block empty");
+	//validateHODEntries(hodid , hodpass);
+	if(	isFieldEmpty(hodid , hodpass) == 0){
+		$("#errorLabel").text("Incomplete information");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 
-	if(	passwordLengthCheck(hodpass) == 0)
-	{
+	if(	passwordLengthCheck(hodpass) == 0){
 		$("#errorLabel").text("Password must be more than six characters");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 
@@ -274,23 +260,90 @@ $(document).ready(function(){
 	successAlert("HOD");
 
 	});
-});
 
-$(document).ready(function(){
 	$("#button1").click( function()
 	{
-	window.location = "sms.html";
+	window.location = "home.html";
 	localStorage.setItem("loginIndex",null);
    	localStorage.setItem("loginIndexHOD",null);
    	localStorage.setItem("loginIndexAdmin",null);
 
 	});
+
+	$("#enableDepartment").click(function()
+	{
+		$("#divDepartmentDetails").attr('style','display: block');
+		$("#departmentButton").attr('style','display: block');
+
+		$("#subjectButton").attr('style','display: none');
+		$("#teacherButton").attr('style','display: none');
+		$("#hodButton").attr('style','display: none');
+
+		$("#divSubjectDetails").attr('style','display: none');
+		$("#divHOD_Details").attr('style','display: none');
+		$("#divTeacherDetails").attr('style','display: none');
+		
+		
+
+	});
+
+	$("#enableSubject").click(function()
+	{
+		
+		$("#divSubjectDetails").attr('style','display: block');
+		$("#subjectButton").attr('style','display: block');
+
+		$("#divTeacherDetails").attr('style','display: none');
+		$("#divDepartmentDetails").attr('style','display: none');
+		$("#divHOD_Details").attr('style','display: none');	
+
+		$("#departmentButton").attr('style','display: none');
+		
+		$("#teacherButton").attr('style','display: none');
+		$("#hodButton").attr('style','display: none');
+			
+	});
+
+
+	$("#enableTeacher").click(function()
+	{
+		$("#divTeacherDetails").attr('style','display: block');
+		$("#teacherButton").attr('style','display: block');
+
+		$("#divSubjectDetails").attr('style','display: none');
+		$("#divDepartmentDetails").attr('style','display: none');
+		$("#divHOD_Details").attr('style','display: none');
+
+		$("#departmentButton").attr('style','display: none');
+		$("#subjectButton").attr('style','display: none');
+		$("#hodButton").attr('style','display: none');
+
+		
+
+	});
+
+	$("#enableHOD").click(function()
+	{
+		$("#divHOD_Details").attr('style','display: block');
+		$("#hodButton").attr('style','display: block');
+
+		$("#divTeacherDetails").attr('style','display: none');
+		$("#divSubjectDetails").attr('style','display: none');
+		$("#divDepartmentDetails").attr('style','display: none');
+
+		$("#departmentButton").attr('style','display: none');
+
+		$("#subjectButton").attr('style','display: none');
+		$("#teacherButton").attr('style','display: none');
+		
+	});
+
 });
 
 
 function successAlert(updatedVariable)
 {
-	$("#successLabel").text("Successfully updated" + updatedVariable);
+	$("#successLabel").text("Successfully updated " + updatedVariable);
     setTimeout(successAlertClear, 2000);
 }
 

@@ -4,13 +4,12 @@ $(document).ready(function(){
 		$("#name").removeAttr('readonly');
 		$("#age").removeAttr('readonly');
 		$("#gender").removeAttr('readonly');
+		$(".inputTextPersonalDetails").attr('style','visibility: visible');
 	});
-});
 
-$(document).ready(function(){
 	$("#button2").click( function()
 	{
-		var teacher = JSON.parse(localStorage.getItem("teach"));
+		var teacher = JSON.parse(localStorage.getItem("teacherAdded"));
 		var index = JSON.parse(localStorage.getItem("loginIndex"));
 		var age = $("#age").val();
 		var name = $("#name").val();
@@ -25,7 +24,7 @@ $(document).ready(function(){
 
 		if(	genderInputCheck(gender) != 0)
 		{
-			$("#errorLabel").text("Gender val() incorrect");
+			$("#errorLabel").text("Gender value incorrect");
 			return;
 		}
 		else
@@ -55,28 +54,27 @@ $(document).ready(function(){
 			"pass1" : teacher[index].pass
 		};
 
-		teacherPersonalTemp.push(dataTemp);
+		teacherPersonalTemp[index] = dataTemp;
 
 		localStorage.setItem("teacherPersonal",JSON.stringify(teacherPersonalTemp));
 
 		$("#name").attr('readOnly','true');
 		$("#age").attr('readOnly','true');
 		$("#gender").attr('readOnly','true');
+		$(".inputTextPersonalDetails").attr('style','visibility: hidden');
+		loadTeacherPersonalData();
 		successAlert();
 	});
-});
 
-$(document).ready(function(){
 	$("#button3").click( function()
 	{
 		$("#master").removeAttr('readonly');
 		$("#bachelor").removeAttr('readonly');
 		$("#higher").removeAttr('readonly');
 		$("#second").removeAttr('readonly');
+		$(".inputText").attr('style','visibility: visible');
 	});
-});
 
-$(document).ready(function(){
 	$("#button4").click( function()
 	{
 		var teacherQual = [];
@@ -92,20 +90,22 @@ $(document).ready(function(){
 		}
 		teacherQual = JSON.parse(localStorage.getItem("teacherQual"));
 	
-		var teacher = JSON.parse(localStorage.getItem("teach"));
+		var teacher = JSON.parse(localStorage.getItem("teacherAdded"));
 	
 		if(teacherQual == null)
 		{
 			teacherQual = [];
 		}
 
-		teacherQual.push({
+		myData = {
 			"id1" : teacher[index].id,
 			"master1" : master,
 			"bachelor1" : bachelor,
 			"higher1" : higher,
 			"second1" : second		
-		});
+		};
+
+		teacherQual[index] = myData;
 
 		localStorage.setItem("teacherQual",JSON.stringify(teacherQual));
 	
@@ -113,14 +113,14 @@ $(document).ready(function(){
 		$("#bachelor").attr('readOnly','true');
 		$("#higher").attr('readOnly','true');
 		$("#second").attr('readOnly','true');
+		$(".inputText").attr('style','visibility: hidden');
 		successAlert();
+		loadTeacherData();
 	});
-});
 
-$(document).ready(function(){
 	$("#button5").click( function()
 	{
-		var teacher = JSON.parse(localStorage.getItem("teach"));
+		var teacher = JSON.parse(localStorage.getItem("teacherAdded"));
 		var hod = JSON.parse(localStorage.getItem("hod"));
 
 		var index = JSON.parse(localStorage.getItem("loginIndex"));
@@ -137,7 +137,7 @@ $(document).ready(function(){
 			{
 				if(teacher[index].id== hod[i].idHod)
 				{
-					$("#studentDiv").show();
+					$("#studentDiv").attr('style','visibility: visible');
 					break;
 				}
 			}
@@ -159,10 +159,7 @@ $(document).ready(function(){
 		$("#errorLabel").text("You are not HOD");
 		return;
 	});
-});
 
-
-$(document).ready(function(){
 	$("#button6").click( function()
 	{
 	var id = $("#sid").val();
@@ -174,28 +171,23 @@ $(document).ready(function(){
 
 	studentTemp = JSON.parse(localStorage.getItem("students"));
 
-	if(studentTemp == null)
-	{
+	if(studentTemp == null){
 		studentTemp = [] ;
 	}
 
-	if(checkFodDuplicatesStudents(id) == 0)
-	{
+	if(checkFodDuplicatesStudents(id) == 0){
 		$("#errorLabel").text("Already added this student");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 
-	if(	passwordLengthCheck(pass) == 0)
-	{
+	if(	passwordLengthCheck(pass) == 0){
 		$("#errorLabel").text("Password must be more than six characters");
 		return;
 	}
-	else
-	{
+	else{
 		$("#errorLabel").text(null);
 	}
 
@@ -210,12 +202,10 @@ $(document).ready(function(){
 	localStorage.setItem("students",JSON.stringify(studentTemp));
 	successAlert();
 	});
-});
 
-$(document).ready(function(){
 	$("#logoutButtton").click( function()
 	{
-		window.location = "sms.html";
+		window.location = "home.html";
 		localStorage.setItem("loginIndex",null);
    		localStorage.setItem("loginIndexHOD",null);
 	});
@@ -230,4 +220,55 @@ function successAlert()
 function successAlertClear()
 {
 	$("#successLabel").text("");
+}
+
+function loadTeacherPersonalData()
+{
+	var teacherDetails = [];
+	teacherDetails =JSON.parse(localStorage.getItem("teacherPersonal"));
+	var index = localStorage.getItem("loginIndex");
+
+	if(teacherDetails== null){  
+		$("#name1").text("NA");
+		$("#age1").text("NA");
+		$("#gender1").text("NA");
+	}
+	else{
+		if(teacherDetails[index]== null){
+			$("#name1").text("NA");
+			$("#age1").text("NA");
+			$("#gender1").text("NA");
+		}
+		$("#name1").text(teacherDetails[index].name1);
+		$("#age1").text(teacherDetails[index].age1);
+		$("#gender1").text(teacherDetails[index].gender1);
+	}
+}
+
+function loadTeacherData()
+{
+	var teacherDetails = [];
+	teacherDetails =JSON.parse(localStorage.getItem("teacherQual"));
+	var index = localStorage.getItem("loginIndex");
+
+	if(teacherDetails== null){  
+		$("#master1").text("NA");
+		$("#bachelor1").text("NA");
+		$("#higher1").text("NA");
+		$("#second1").text("NA");
+	}
+	else{
+		if(teacherDetails[index]== null ){
+			$("#master1").text("NA");
+			$("#bachelor1").text("NA");
+			$("#higher1").text("NA");
+			$("#second1").text("NA");
+		}
+		else{
+			$("#master1").text(teacherDetails[index].master1);
+			$("#bachelor1").text(teacherDetails[index].bachelor1);
+			$("#higher1").text(teacherDetails[index].higher1);
+			$("#second1").text(teacherDetails[index].second1);
+		}
+	}
 }
